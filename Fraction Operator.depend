@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1562634899 source:d:\ppi\easyform\fraction operator\main rational.cpp
+	<iostream>
+	"RationalNumber.h"
+
+1562636151 d:\ppi\easyform\fraction operator\include\rationalnumber.h
+	<iostream>
+
+1562636178 source:d:\ppi\easyform\fraction operator\src\rationalnumber.cpp
+	"RationalNumber.h"
+	<cmath>
+	<iostream>
+
