@@ -5,15 +5,12 @@ using namespace std;
     int main()
     {
         RationalNumber n1( 28 , 5 );
-        RationalNumber n2( 13 , 6 );
+        RationalNumber n2(  136 , 5 );
 
-        cout << n1 + n2;
-
-
-
-
-
-
+        if( n1 != n2 )
+            cout << "DIFF";
+        else
+            cout << "SAME";
 
 
         return 0;

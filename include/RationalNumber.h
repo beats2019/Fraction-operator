@@ -13,7 +13,21 @@ class RationalNumber
         void adjustFraction( int &n1, int &n2 );
         int gcd(int a, int b);
         RationalNumber operator +( const RationalNumber & ) const;
-        RationalNumber operator +( const int , const int ) const;
+        RationalNumber operator +( const int ) const;
+
+        RationalNumber operator -( const RationalNumber & ) const;
+        RationalNumber operator -( const int ) const;
+
+        RationalNumber operator *( const RationalNumber & ) const;
+        RationalNumber operator *( const int ) const;
+
+        RationalNumber operator /( const  RationalNumber& ) const;
+        RationalNumber operator /( const int ) const;
+
+        bool operator ==( const RationalNumber & ) const;
+        bool operator !=( const RationalNumber & ) const;
+
+
 
 
     private:

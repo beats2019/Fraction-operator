@@ -15,14 +15,12 @@ using namespace std;
             throw out_of_range("Div by 0 undefined");
     }
 
-
-
-    RationalNumber::~RationalNumber()
+   RationalNumber::~RationalNumber()
     {
-        cout << "Object deleted";
+
     }
 
-    void RationalNumber:: adjustFraction( int &n1, int &n2 )
+    void RationalNumber::adjustFraction( int &n1, int &n2 )
     {
 
          int value = gcd( n1 , n2 );
@@ -44,8 +42,8 @@ using namespace std;
           return a;
        return gcd(b, a % b);
     }
-
-     RationalNumber RationalNumber::operator +( const RationalNumber &n2 ) const
+/////////////////////////////SUM OPERATOR ( + ) ///////////////////////////////////////////
+    RationalNumber RationalNumber::operator +( const RationalNumber &n2 ) const
     {
         RationalNumber temp;
 
@@ -56,22 +54,130 @@ using namespace std;
 
     }
 
-    RationalNumber RationalNumber::operator +( const int n2, const int d2 ) const
+    RationalNumber RationalNumber::operator +( const int n ) const
     {
         RationalNumber temp;
 
-        temp.numerator = (this->numerator * d2 ) + ( this->denominator * n2);
-        temp.denominator = this->denominator * d2;
+        temp.numerator = this->numerator  + ( this->denominator * n);
+        temp.denominator = this->denominator;
+
+        return temp;
+
+    }
+/////////////////////////////DIFFERENCE OPERATOR ( - ) ///////////////////////////////////////////
+    RationalNumber RationalNumber::operator -( const RationalNumber &n2 ) const
+    {
+        RationalNumber temp;
+
+        temp.numerator = (this->numerator * n2.denominator) - ( this->denominator * n2.numerator );
+        temp.denominator = this->denominator * n2.denominator;
 
         return temp;
 
     }
 
+    RationalNumber RationalNumber::operator -( const int n ) const
+    {
+        RationalNumber temp;
+
+        temp.numerator = this->numerator  - ( this->denominator * n);
+        temp.denominator = this->denominator;
+
+        return temp;
+
+    }
+/////////////////////////////MULTIPLICATION OPERATOR ( * ) ///////////////////////////////////////////
+
+    RationalNumber RationalNumber::operator *( const RationalNumber &n2 ) const
+    {
+        RationalNumber temp;
+
+        int num = this->numerator * n2.numerator;
+        int den = this->denominator * n2.denominator;
+
+        temp.numerator = num;
+        temp.denominator = den;
+
+        return temp;
+    }
+
+    RationalNumber RationalNumber::operator *( const int n ) const
+    {
+        RationalNumber temp;
+
+        int num = this->numerator  * n ;
+        int den = this->denominator;
+
+        temp.adjustFraction( num, den );
+
+        temp.numerator = num;
+        temp.denominator = den;
+
+        return temp;
+
+    }
+/////////////////////////////DIVISION OPERATOR ( * ) ///////////////////////////////////////////
+
+    RationalNumber RationalNumber::operator /( const RationalNumber &n2 ) const
+    {
+        RationalNumber temp;
+
+        int num = this->numerator * n2.denominator;
+        int den = this->denominator * n2.numerator;
+
+        temp.numerator = num;
+        temp.denominator = den;
+
+        return temp;
+    }
+
+    RationalNumber RationalNumber::operator /( const int n ) const
+    {
+        RationalNumber temp;
+
+        int num = this->numerator;
+        int den = this->denominator * n;
+
+        temp.adjustFraction( num, den );
+
+        temp.numerator = num;
+        temp.denominator = den;
+
+        return temp;
+
+    }
+
+    /////////////////////////////RELATIONAl OPERATORS/////////////////////////////////////////////
+
+    bool RationalNumber::operator ==( const RationalNumber &n2 ) const
+    {
+        if( this->numerator == n2.numerator and this->denominator == n2.denominator )
+            return true;
+        else
+            return false;
+    }
+
+    bool RationalNumber::operator !=( const RationalNumber &n2 ) const
+    {
+        if( this->numerator != n2.numerator or this->denominator != n2.denominator )
+            return true;
+        else
+            return false;
+    }
 
 
+
+
+  /////////////////////////////OUTPUT/////////////////////////////////////////////
     ostream &operator <<( ostream &output, const RationalNumber &a )
     {
-        output << a.numerator << " / " << a.denominator;
+        output << a.numerator;
+
+        if( a.denominator != 1 )
+            cout << " / " << a.denominator << endl;
+        if( a.denominator == 0 )
+            throw out_of_range("Zero is a non valid denominator");
+
         return output;
     }
 
